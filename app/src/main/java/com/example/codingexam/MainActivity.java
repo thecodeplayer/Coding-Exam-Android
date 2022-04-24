@@ -31,7 +31,6 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
     private ActivityMainBinding activityMainBinding;
     private MainActivityViewModel mainActivityViewModel;
-    private static final String[] _gender = {"Male", "Female"};
     private static String fullName, emailAddress, mobileNumber, birthday, age;
     private com.example.codingexam.widgets.DatePicker datePicker;
     private Pattern emailPattern, fullNamePattern, mobileNumberPattern;
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         activityMainBinding.spGender.setOnItemSelectedListener(this);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, _gender);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, AppConstants._gender);
         arrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         activityMainBinding.spGender.setAdapter(arrayAdapter);
@@ -95,14 +94,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     activityMainBinding.etMobileNumber.requestFocus();
                 } else if (TextUtils.isEmpty(birthday)) {
                     Toast.makeText(MainActivity.this, "Please select date of birth", Toast.LENGTH_LONG).show();
-//                    activityMainBinding.etDateOfBirth.setError("Please select date of birth");
-//                    activityMainBinding.etDateOfBirth.requestFocus();
                 } else if (Integer.parseInt(age) < 18) {
                     Toast.makeText(MainActivity.this, "Invalid age", Toast.LENGTH_LONG).show();
-//                    activityMainBinding.etDateOfBirth.setError("Invalid age");
-//                    activityMainBinding.etDateOfBirth.requestFocus();
-                }
-                else {
+                } else {
                     getUserInformation();
                 }
             }
